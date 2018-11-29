@@ -8,7 +8,7 @@ title: me
 
 
 
-I am currently a fourth-year student at Oberlin College. My research interests include audio signal processing, human and machine audition, and source separation. In particular, I am interested in microphone array processing for real-time noise reduction and signal enhancement in hearing aid and augmented listening applications. A copy of my [CV](/cv) is available. 
+I am currently a fourth-year student at Oberlin College studying physics with minors in Mathematics and Computer Science. My research interests include audio signal processing, human and machine audition, and source separation. In particular, I am interested in microphone array processing for real-time noise reduction and signal enhancement in hearing aid and augmented listening applications. A copy of my [CV](/cv) is available. 
 
 The purpose of this website is largely for me to teach myself about web design via HTML and CSS. If you're also looking to begin web design, I highly recommend starting with Jekyll and Github Pages. These are two incredibly powerful tools for generating professional-looking static sites. 
 
