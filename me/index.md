@@ -2,7 +2,7 @@
 layout: me
 title: me
 ---
-<img src="/assets/img/me1.jpg" alt="drawing" width="150" style="float: right;"/>
+<img src="/assets/img/me3.jpg" alt="drawing" width="150" style="float: right;"/>
 ................................................................................
 
 
