@@ -5,6 +5,9 @@ tags: projects
 ---
 
 # eggDJ: A Portable Real-Time Music Augmentation System
+<p align="center">
+  <img height="200" src="/assets/img/eggDJ.jpg">
+</p>
 
 ## Introduction
 
@@ -37,8 +40,11 @@ I had the following goals in mind while I designed eggDJ:
 ## Hardware 
 
 An initial reaction to these design goals might be to simply build an Android/iPhone app where one can trigger samples by tapping the screen. While this would be fairly straightforward, it doesn't accomplish all of the goals well because it would be difficult to interact with while not looking at it. 
+<img height="100" align="right" src="/assets/img/pi.png">
+
 
 I decided to use a Raspberry Pi 3 with an [Audio Injector Zero Shield](http://www.audioinjector.net/rpi-zero) to implement the hardware side. It is notoriously difficult to get audio into the Pi (a simple Google search will confirm this, PureData's website has the [best list of working soundcards](https://puredata.info/docs/raspberry-pi) that I was able to find). Even with the Audio Injector Zero, it still took several hours to figure out how to get audio in and out using the sound card. 
+<img height="100" align="right" src="/assets/img/zero.png">
 
 In order to trigger the samples, I just decided to use 5 simple pushbuttons, one for each finger. The simple control interface makes the eggDJ very intuitive with a low entry-fee. 
 
@@ -46,10 +52,22 @@ Unfortunately, when I tried to use the Audio Injector Shield (which takes over a
 
 ## Software 
 
-On the software side of things, the most straightforward way to trigger samples over an audio input on a Raspberry Pi is using Pure Data (MSP's Vanilla version). My patch implements a simple sample selection mechanism, where the user cycles through an arbitrary number (in this case, ten) of samples on a given channel (finger) by pressing the thumb button. 
 
-My Arduino code simply writes which button was pushed to a serial stream which is read by Pd's comport object. 
+
+On the software side of things, the most straightforward way to trigger samples over an audio input on a Raspberry Pi is using Pure Data (MSP's Vanilla version). My patch (shown below) implements a simple sample selection mechanism, where the user cycles through an arbitrary number (in this case, ten) of samples on a given channel (finger) by pressing the thumb button. 
+
+<p align="center">
+  <img height="300" src="/assets/img/tekmit.png">
+</p>
+
+My Arduino code (below) simply writes which button was pushed to a serial stream which is read by Pd's comport object. More details are in the code comments and ReadMe file. 
+
+<iframe width="560" height="315" src="https://create.arduino.cc/editor/mskarha/742d57c9-5db0-4dcd-8c61-98dfa7ed13e3/preview?embed"></iframe>
 
 ## Demo
 
 [https://www.youtube.com/watch?v=idyqRyKqyLU](https://www.youtube.com/watch?v=idyqRyKqyLU)
+
+## References
+
+[1] Frid, Emma. “Accessible Digital Musical Instruments - a Survey of Inclusive Instruments Presented at the NIME, SMC and ICMC Conferences.” ICMC (2018).

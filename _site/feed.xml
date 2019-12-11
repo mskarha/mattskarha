@@ -1,4 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-12-10T21:10:12-05:00</updated><id>http://localhost:4000/</id><title type="html">Matt Skarha</title><subtitle>Your description here</subtitle><entry><title type="html">eggDJ: A Portable Real-Time Music Augmentation System</title><link href="http://localhost:4000/20191210/lorem-ipsum" rel="alternate" type="text/html" title="eggDJ: A Portable Real-Time Music Augmentation System" /><published>2019-12-10T00:00:00-05:00</published><updated>2019-12-10T00:00:00-05:00</updated><id>http://localhost:4000/20191210/lorem-ipsum</id><content type="html" xml:base="http://localhost:4000/20191210/lorem-ipsum">&lt;h1 id=&quot;eggdj-a-portable-real-time-music-augmentation-system&quot;&gt;eggDJ: A Portable Real-Time Music Augmentation System&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-12-11T16:17:19-05:00</updated><id>http://localhost:4000/</id><title type="html">Matt Skarha</title><subtitle>Your description here</subtitle><entry><title type="html">eggDJ: A Portable Real-Time Music Augmentation System</title><link href="http://localhost:4000/20191210/lorem-ipsum" rel="alternate" type="text/html" title="eggDJ: A Portable Real-Time Music Augmentation System" /><published>2019-12-10T00:00:00-05:00</published><updated>2019-12-10T00:00:00-05:00</updated><id>http://localhost:4000/20191210/lorem-ipsum</id><content type="html" xml:base="http://localhost:4000/20191210/lorem-ipsum">&lt;h1 id=&quot;eggdj-a-portable-real-time-music-augmentation-system&quot;&gt;eggDJ: A Portable Real-Time Music Augmentation System&lt;/h1&gt;
+&lt;p align=&quot;center&quot;&gt;
+  &lt;img height=&quot;200&quot; src=&quot;/assets/img/eggDJ.jpg&quot; /&gt;
+&lt;/p&gt;
 
 &lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
 
@@ -32,9 +35,11 @@
 
 &lt;h2 id=&quot;hardware&quot;&gt;Hardware&lt;/h2&gt;
 
-&lt;p&gt;An initial reaction to these design goals might be to simply build an Android/iPhone app where one can trigger samples by tapping the screen. While this would be fairly straightforward, it doesn’t accomplish all of the goals well because it would be difficult to interact with while not looking at it.&lt;/p&gt;
+&lt;p&gt;An initial reaction to these design goals might be to simply build an Android/iPhone app where one can trigger samples by tapping the screen. While this would be fairly straightforward, it doesn’t accomplish all of the goals well because it would be difficult to interact with while not looking at it. 
+&lt;img height=&quot;100&quot; align=&quot;right&quot; src=&quot;/assets/img/pi.png&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;I decided to use a Raspberry Pi 3 with an &lt;a href=&quot;http://www.audioinjector.net/rpi-zero&quot;&gt;Audio Injector Zero Shield&lt;/a&gt; to implement the hardware side. It is notoriously difficult to get audio into the Pi (a simple Google search will confirm this, PureData’s website has the &lt;a href=&quot;https://puredata.info/docs/raspberry-pi&quot;&gt;best list of working soundcards&lt;/a&gt; that I was able to find). Even with the Audio Injector Zero, it still took several hours to figure out how to get audio in and out using the sound card.&lt;/p&gt;
+&lt;p&gt;I decided to use a Raspberry Pi 3 with an &lt;a href=&quot;http://www.audioinjector.net/rpi-zero&quot;&gt;Audio Injector Zero Shield&lt;/a&gt; to implement the hardware side. It is notoriously difficult to get audio into the Pi (a simple Google search will confirm this, PureData’s website has the &lt;a href=&quot;https://puredata.info/docs/raspberry-pi&quot;&gt;best list of working soundcards&lt;/a&gt; that I was able to find). Even with the Audio Injector Zero, it still took several hours to figure out how to get audio in and out using the sound card. 
+&lt;img height=&quot;100&quot; align=&quot;right&quot; src=&quot;/assets/img/zero.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;In order to trigger the samples, I just decided to use 5 simple pushbuttons, one for each finger. The simple control interface makes the eggDJ very intuitive with a low entry-fee.&lt;/p&gt;
 
@@ -42,13 +47,23 @@
 
 &lt;h2 id=&quot;software&quot;&gt;Software&lt;/h2&gt;
 
-&lt;p&gt;On the software side of things, the most straightforward way to trigger samples over an audio input on a Raspberry Pi is using Pure Data (MSP’s Vanilla version). My patch implements a simple sample selection mechanism, where the user cycles through an arbitrary number (in this case, ten) of samples on a given channel (finger) by pressing the thumb button.&lt;/p&gt;
+&lt;p&gt;On the software side of things, the most straightforward way to trigger samples over an audio input on a Raspberry Pi is using Pure Data (MSP’s Vanilla version). My patch (shown below) implements a simple sample selection mechanism, where the user cycles through an arbitrary number (in this case, ten) of samples on a given channel (finger) by pressing the thumb button.&lt;/p&gt;
 
-&lt;p&gt;My Arduino code simply writes which button was pushed to a serial stream which is read by Pd’s comport object.&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+  &lt;img height=&quot;300&quot; src=&quot;/assets/img/tekmit.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;My Arduino code (below) simply writes which button was pushed to a serial stream which is read by Pd’s comport object. More details are in the code comments and ReadMe file.&lt;/p&gt;
+
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://create.arduino.cc/editor/mskarha/742d57c9-5db0-4dcd-8c61-98dfa7ed13e3/preview?embed&quot;&gt;&lt;/iframe&gt;
 
 &lt;h2 id=&quot;demo&quot;&gt;Demo&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=idyqRyKqyLU&quot;&gt;https://www.youtube.com/watch?v=idyqRyKqyLU&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="projects" /><summary type="html">eggDJ: A Portable Real-Time Music Augmentation System</summary></entry><entry><title type="html">Integer Programming for Optimal Right Hand Guitar Fingerings</title><link href="http://localhost:4000/20181217/fingerings" rel="alternate" type="text/html" title="Integer Programming for Optimal Right Hand Guitar Fingerings" /><published>2018-12-17T00:00:00-05:00</published><updated>2018-12-17T00:00:00-05:00</updated><id>http://localhost:4000/20181217/fingerings</id><content type="html" xml:base="http://localhost:4000/20181217/fingerings">&lt;h2 id=&quot;integer-programming-for-optimal-right-hand-guitar-fingerings&quot;&gt;Integer Programming for Optimal Right Hand Guitar Fingerings&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=idyqRyKqyLU&quot;&gt;https://www.youtube.com/watch?v=idyqRyKqyLU&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+
+&lt;p&gt;[1] Frid, Emma. “Accessible Digital Musical Instruments - a Survey of Inclusive Instruments Presented at the NIME, SMC and ICMC Conferences.” ICMC (2018).&lt;/p&gt;</content><author><name></name></author><category term="projects" /><summary type="html">eggDJ: A Portable Real-Time Music Augmentation System</summary></entry><entry><title type="html">Integer Programming for Optimal Right Hand Guitar Fingerings</title><link href="http://localhost:4000/20181217/fingerings" rel="alternate" type="text/html" title="Integer Programming for Optimal Right Hand Guitar Fingerings" /><published>2018-12-17T00:00:00-05:00</published><updated>2018-12-17T00:00:00-05:00</updated><id>http://localhost:4000/20181217/fingerings</id><content type="html" xml:base="http://localhost:4000/20181217/fingerings">&lt;h2 id=&quot;integer-programming-for-optimal-right-hand-guitar-fingerings&quot;&gt;Integer Programming for Optimal Right Hand Guitar Fingerings&lt;/h2&gt;
 
 &lt;p&gt;The Western canon of European classical music includes a substantial amount of scale-based, fingerstyle guitar music. When presented with a piece of sheet music, a classical guitarist must make a number of decisions regarding its performance. These decisions include notating the tablature, the left hand fingerings, and the right hand fingerings. This process, especially for right hand guitar fingerings, is often a trivial, yet cumbersome task.&lt;/p&gt;
 
