@@ -1,4 +1,54 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-10-04T12:46:43-04:00</updated><id>http://localhost:4000/</id><title type="html">Matt Skarha</title><subtitle>Your description here</subtitle><entry><title type="html">Integer Programming for Optimal Right Hand Guitar Fingerings</title><link href="http://localhost:4000/20181217/fingerings" rel="alternate" type="text/html" title="Integer Programming for Optimal Right Hand Guitar Fingerings" /><published>2018-12-17T00:00:00-05:00</published><updated>2018-12-17T00:00:00-05:00</updated><id>http://localhost:4000/20181217/fingerings</id><content type="html" xml:base="http://localhost:4000/20181217/fingerings">&lt;h2 id=&quot;integer-programming-for-optimal-right-hand-guitar-fingerings&quot;&gt;Integer Programming for Optimal Right Hand Guitar Fingerings&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-12-10T21:10:12-05:00</updated><id>http://localhost:4000/</id><title type="html">Matt Skarha</title><subtitle>Your description here</subtitle><entry><title type="html">eggDJ: A Portable Real-Time Music Augmentation System</title><link href="http://localhost:4000/20191210/lorem-ipsum" rel="alternate" type="text/html" title="eggDJ: A Portable Real-Time Music Augmentation System" /><published>2019-12-10T00:00:00-05:00</published><updated>2019-12-10T00:00:00-05:00</updated><id>http://localhost:4000/20191210/lorem-ipsum</id><content type="html" xml:base="http://localhost:4000/20191210/lorem-ipsum">&lt;h1 id=&quot;eggdj-a-portable-real-time-music-augmentation-system&quot;&gt;eggDJ: A Portable Real-Time Music Augmentation System&lt;/h1&gt;
+
+&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;From time to time, I catch myself energetically tapping my fingers to the beat of my music while on the bus and the metro. For a brief moment, I become so captivated by the groove in my headphones that I completely lose awareness of my surroundings. I find myself attempting to match the kick/snare pattern with my index and middle fingers as well as embellish the drums with rhythms of my own.&lt;/p&gt;
+
+&lt;p&gt;This project is an attempt to bring those moments to life.&lt;/p&gt;
+
+&lt;h2 id=&quot;live-augmentation-as-musical-practice&quot;&gt;Live Augmentation as Musical Practice&lt;/h2&gt;
+
+&lt;p&gt;I would like to introduce the notion of live augmentation as a musical practice. Live augmentation, in this context (not to be confused with the music theory term of the same name describing the lengthening of a note), simply refers to adding your own flair to an existing piece of recorded music in real-time. This can be anything from layering vocal samples on top of a lofi SoundCloud house mix to practicing your jazz guitar comping by playing along with an famous jazz recording. The benefits of such practice when compared with the traditional practice of acoustic instruments are threefold: it is often a much more accessible approach to music, it can have interesting pedagogical effects, and it can breathe new life into an existing piece of music, opening up a new realm of creativity.&lt;/p&gt;
+
+&lt;p&gt;Take the example of the guitarist comping along with a Miles Davis record. It is not necessarily an easy task to get, for example, a trumpet player, a bassist, and a drummer in a particular room at a particular time a) that you get along with, b) that are at a similar skill level as you, c) have similar musical goals as you, and d) without being too loud as to disturb others. Not to mention all the equipment hauling and level mixing that needs to be done. By simply playing along with a favorite record, the guitarist can often accomplish many of their musical goals much more easily.&lt;/p&gt;
+
+&lt;p&gt;Additionally, many researchers in the field of Accessible Digital Musical Instruments, or ADMIs, (that seek to build musical control interfaces for persons with physical or mental disabilities) take the “augmentation” approach due to its low barrier to entry and retention of musical nuance [1].&lt;/p&gt;
+
+&lt;p&gt;Live augmentation can also be a very pedagogical tool. If we play along with a recording that is deemed to “have more merit” within a particular tradition of music, we can often learn more easily by engaging directly with the music as compared to passive listening. The obvious example is the jazz guitarist emulating the comping technique of say, Freddie Green, while playing along with a Count Basie record, in an attempt to improve their comping skills. By inserting their own musical creativity into the piece, the guitarist is also, by definition, creating a new piece of music that has infinite potential for innovation.&lt;/p&gt;
+
+&lt;h2 id=&quot;design-goals&quot;&gt;Design Goals&lt;/h2&gt;
+
+&lt;p&gt;For this project, I wanted to implement a real-time music augmentation system that I can use on my way to class. This portability constraint made the project much more interesting than traditional music technology hardware, that often sits in a studio and requires a desktop computer for interaction.&lt;/p&gt;
+
+&lt;p&gt;I had the following goals in mind while I designed eggDJ:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;it had to be able to play music from any streaming service (e.g. Spotify, SoundCloud, YouTube)&lt;/li&gt;
+  &lt;li&gt;it had to have the ability to layer any digital sound with a basic sampler mechanism&lt;/li&gt;
+  &lt;li&gt;the entire system should fit in a jacket pocket wirelessly&lt;/li&gt;
+  &lt;li&gt;it should have zero visual aspect (only hearing and touch)&lt;/li&gt;
+  &lt;li&gt;no one should be able to tell what you are doing (don’t wanna look weird on the bus)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;hardware&quot;&gt;Hardware&lt;/h2&gt;
+
+&lt;p&gt;An initial reaction to these design goals might be to simply build an Android/iPhone app where one can trigger samples by tapping the screen. While this would be fairly straightforward, it doesn’t accomplish all of the goals well because it would be difficult to interact with while not looking at it.&lt;/p&gt;
+
+&lt;p&gt;I decided to use a Raspberry Pi 3 with an &lt;a href=&quot;http://www.audioinjector.net/rpi-zero&quot;&gt;Audio Injector Zero Shield&lt;/a&gt; to implement the hardware side. It is notoriously difficult to get audio into the Pi (a simple Google search will confirm this, PureData’s website has the &lt;a href=&quot;https://puredata.info/docs/raspberry-pi&quot;&gt;best list of working soundcards&lt;/a&gt; that I was able to find). Even with the Audio Injector Zero, it still took several hours to figure out how to get audio in and out using the sound card.&lt;/p&gt;
+
+&lt;p&gt;In order to trigger the samples, I just decided to use 5 simple pushbuttons, one for each finger. The simple control interface makes the eggDJ very intuitive with a low entry-fee.&lt;/p&gt;
+
+&lt;p&gt;Unfortunately, when I tried to use the Audio Injector Shield (which takes over all 40 of the Pi’s GPIO pins) in tandem with buttons attached to the GPIO pins, the Pi crashed. Thus, in order to get the pushbutton data into the Pi, I used a Teensy 3.2 interfaced via a micro-USB cable. The Teensy 3.2 has pullup resistors built-in to all 21 digital I/O pins, making it preferable compared to an Arduino Uno.&lt;/p&gt;
+
+&lt;h2 id=&quot;software&quot;&gt;Software&lt;/h2&gt;
+
+&lt;p&gt;On the software side of things, the most straightforward way to trigger samples over an audio input on a Raspberry Pi is using Pure Data (MSP’s Vanilla version). My patch implements a simple sample selection mechanism, where the user cycles through an arbitrary number (in this case, ten) of samples on a given channel (finger) by pressing the thumb button.&lt;/p&gt;
+
+&lt;p&gt;My Arduino code simply writes which button was pushed to a serial stream which is read by Pd’s comport object.&lt;/p&gt;
+
+&lt;h2 id=&quot;demo&quot;&gt;Demo&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=idyqRyKqyLU&quot;&gt;https://www.youtube.com/watch?v=idyqRyKqyLU&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="projects" /><summary type="html">eggDJ: A Portable Real-Time Music Augmentation System</summary></entry><entry><title type="html">Integer Programming for Optimal Right Hand Guitar Fingerings</title><link href="http://localhost:4000/20181217/fingerings" rel="alternate" type="text/html" title="Integer Programming for Optimal Right Hand Guitar Fingerings" /><published>2018-12-17T00:00:00-05:00</published><updated>2018-12-17T00:00:00-05:00</updated><id>http://localhost:4000/20181217/fingerings</id><content type="html" xml:base="http://localhost:4000/20181217/fingerings">&lt;h2 id=&quot;integer-programming-for-optimal-right-hand-guitar-fingerings&quot;&gt;Integer Programming for Optimal Right Hand Guitar Fingerings&lt;/h2&gt;
 
 &lt;p&gt;The Western canon of European classical music includes a substantial amount of scale-based, fingerstyle guitar music. When presented with a piece of sheet music, a classical guitarist must make a number of decisions regarding its performance. These decisions include notating the tablature, the left hand fingerings, and the right hand fingerings. This process, especially for right hand guitar fingerings, is often a trivial, yet cumbersome task.&lt;/p&gt;
 
@@ -66,18 +116,4 @@
 &lt;p&gt;&lt;img src=&quot;/assets/img/michelson.jpg&quot; alt=&quot;drawing&quot; width=&quot;450&quot; style=&quot;float: center;&quot; /&gt;&lt;/p&gt;
 
 &lt;blockquote class=&quot;twitter-tweet&quot; data-lang=&quot;en&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;My proudest snapchat moment ever was when I set up a laser interferometer in physics lab to measure speaker cone displacement then played technotronic&amp;#39;s pump up the jam and took data with an oscilloscope built by &lt;a href=&quot;https://twitter.com/tektronix?ref_src=twsrc%5Etfw&quot;&gt;@tektronix&lt;/a&gt; &lt;a href=&quot;https://t.co/Tu06GeEF6M&quot;&gt;pic.twitter.com/Tu06GeEF6M&lt;/a&gt;&lt;/p&gt;&amp;mdash; skorched earth policy (@skarhaha56) &lt;a href=&quot;https://twitter.com/skarhaha56/status/1012424839993413632?ref_src=twsrc%5Etfw&quot;&gt;June 28, 2018&lt;/a&gt;&lt;/blockquote&gt;
-&lt;script async=&quot;&quot; src=&quot;https://platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;</content><author><name></name></author><category term="projects" /><summary type="html">Laser Interferometry for Loudspeaker Characterization</summary></entry><entry><title type="html">Chaotic Double Pendulum Synthesizer</title><link href="http://localhost:4000/20170831/lorem-ipsum" rel="alternate" type="text/html" title="Chaotic Double Pendulum Synthesizer" /><published>2017-08-31T00:00:00-04:00</published><updated>2017-08-31T00:00:00-04:00</updated><id>http://localhost:4000/20170831/lorem-ipsum</id><content type="html" xml:base="http://localhost:4000/20170831/lorem-ipsum">&lt;h2 id=&quot;chaotic-double-pendulum-synthesizer&quot;&gt;Chaotic Double Pendulum Synthesizer&lt;/h2&gt;
-
-&lt;p&gt;The Chaotic Double Pendulum Synthesizer is an attempt to find musicality in the laws of physics that govern our world.&lt;/p&gt;
-
-&lt;p&gt;The double pendulum is a simple idea, but complex mathematically. The basic idea of a chaotic double pendulum is that it is a simple physical system (a pendulum attached to the end of another pendulum) that exhibits rich dynamic behavior (much more interesting motion that one would expect) with a strong sensitivity to initial conditions. The motion is often described by physicists as unexpectedly mesmerizing.&lt;/p&gt;
-
-&lt;p&gt;The goal of this project is to capture that mesmerizing motion with electroacoustic music using Max/MSP motion tracking and sound processing. By feeding data about the position, velocity, and acceleration of the pendulums into a series of oscillators, we can “listen” to the chaos that governs some of the laws of physics of our universe.&lt;/p&gt;
-
-&lt;p&gt;Click &lt;a href=&quot;http://scienceworld.wolfram.com/physics/DoublePendulum.html&quot;&gt;here&lt;/a&gt; to learn more about some of the math behind coupled pendula. Additionally, click &lt;a href=&quot;https://www.youtube.com/watch?v=AwT0k09w-jw&quot;&gt;here&lt;/a&gt; to watch a demo of a chaotic double pendulum.&lt;/p&gt;
-
-&lt;p&gt;Click the image below to watch a brief demo of the synthesizer.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://www.youtube.com/watch?v=Op3IMovg4CM&quot;&gt;&lt;img src=&quot;http://img.youtube.com/vi/Op3IMovg4CM/0.jpg&quot; alt=&quot;synth&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/mskarha/Chaotic-Double-Pendulum-Synthesizer&quot;&gt;Github Repository&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="projects" /><summary type="html">Chaotic Double Pendulum Synthesizer</summary></entry></feed>
+&lt;script async=&quot;&quot; src=&quot;https://platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;</content><author><name></name></author><category term="projects" /><summary type="html">Laser Interferometry for Loudspeaker Characterization</summary></entry></feed>
