@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-12-29T20:17:22-06:00</updated><id>http://localhost:4000/</id><title type="html">Matt Skarha</title><subtitle>Your description here</subtitle><entry><title type="html">eggDJ: A Portable Real-Time Music Augmentation System</title><link href="http://localhost:4000/20191210/eggDJ" rel="alternate" type="text/html" title="eggDJ: A Portable Real-Time Music Augmentation System" /><published>2019-12-10T00:00:00-06:00</published><updated>2019-12-10T00:00:00-06:00</updated><id>http://localhost:4000/20191210/eggDJ</id><content type="html" xml:base="http://localhost:4000/20191210/eggDJ">&lt;h1 id=&quot;eggdj-a-portable-real-time-music-augmentation-system&quot;&gt;eggDJ: A Portable Real-Time Music Augmentation System&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-01-15T15:51:19-05:00</updated><id>http://localhost:4000/</id><title type="html">Matt Skarha</title><subtitle>Your description here</subtitle><entry><title type="html">eggDJ: A Portable Real-Time Music Augmentation System</title><link href="http://localhost:4000/20191210/eggDJ" rel="alternate" type="text/html" title="eggDJ: A Portable Real-Time Music Augmentation System" /><published>2019-12-10T00:00:00-05:00</published><updated>2019-12-10T00:00:00-05:00</updated><id>http://localhost:4000/20191210/eggDJ</id><content type="html" xml:base="http://localhost:4000/20191210/eggDJ">&lt;h1 id=&quot;eggdj-a-portable-real-time-music-augmentation-system&quot;&gt;eggDJ: A Portable Real-Time Music Augmentation System&lt;/h1&gt;
 &lt;p align=&quot;center&quot;&gt;
   &lt;img height=&quot;200&quot; src=&quot;/assets/img/eggDJ.jpg&quot; /&gt;
 &lt;/p&gt;
@@ -63,7 +63,62 @@
 
 &lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
 
-&lt;p&gt;[1] Frid, Emma. “Accessible Digital Musical Instruments - a Survey of Inclusive Instruments Presented at the NIME, SMC and ICMC Conferences.” ICMC (2018).&lt;/p&gt;</content><author><name></name></author><category term="projects" /><summary type="html">eggDJ: A Portable Real-Time Music Augmentation System</summary></entry><entry><title type="html">Integer Programming for Optimal Right Hand Guitar Fingerings</title><link href="http://localhost:4000/20181217/fingerings" rel="alternate" type="text/html" title="Integer Programming for Optimal Right Hand Guitar Fingerings" /><published>2018-12-17T00:00:00-06:00</published><updated>2018-12-17T00:00:00-06:00</updated><id>http://localhost:4000/20181217/fingerings</id><content type="html" xml:base="http://localhost:4000/20181217/fingerings">&lt;h2 id=&quot;integer-programming-for-optimal-right-hand-guitar-fingerings&quot;&gt;Integer Programming for Optimal Right Hand Guitar Fingerings&lt;/h2&gt;
+&lt;p&gt;[1] Frid, Emma. “Accessible Digital Musical Instruments - a Survey of Inclusive Instruments Presented at the NIME, SMC and ICMC Conferences.” ICMC (2018).&lt;/p&gt;</content><author><name></name></author><category term="projects" /><summary type="html">eggDJ: A Portable Real-Time Music Augmentation System</summary></entry><entry><title type="html">Cooperative Listening Devices with Distributed and Wearable Microphone Arrays</title><link href="http://localhost:4000/20190809/micarrays" rel="alternate" type="text/html" title="Cooperative Listening Devices with Distributed and Wearable Microphone Arrays" /><published>2019-08-09T00:00:00-04:00</published><updated>2019-08-09T00:00:00-04:00</updated><id>http://localhost:4000/20190809/micarrays</id><content type="html" xml:base="http://localhost:4000/20190809/micarrays">&lt;h1 id=&quot;cooperative-listening-devices-with-distributed-and-wearable-microphone-arrays&quot;&gt;Cooperative Listening Devices with Distributed and Wearable Microphone Arrays&lt;/h1&gt;
+
+&lt;p&gt;I was fortunate enough to spend the past two summers (‘18 &amp;amp; ‘19) as a research assistant in the lab of &lt;a href=&quot;http://ryanmcorey.com/&quot;&gt;Ryan Corey, PhD&lt;/a&gt;. When I was working with him, he was a doctoral candidate in Electrical and Computer Engineering at the University of Illinois at Urbana-Champaign. This post summarizes our work.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+  &lt;img height=&quot;300&quot; src=&quot;/assets/img/room1.jpg&quot; /&gt;
+&lt;/p&gt;
+
+&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;Hearing aids don’t work well in noisy, reverberant environments where lots of people are talking at once (e.g. a crowded bar, conference poster session, etc.). Ryan, a hearing aid user himself, devoted his entire Ph.D. to improving the performance of hearing aids in noisy environments. In doing this, he also helped to develop what he calls ‘augmented listening (AL)’ technologies. You can read more about augmented listening technologies &lt;a href=&quot;https://publish.illinois.edu/augmentedlistening/what-is-augmented-listening/&quot;&gt;here&lt;/a&gt;, but in general, they can be grouped into four categories of products:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;traditional hearing aids&lt;/li&gt;
+  &lt;li&gt;personal sound amplification products (&lt;a href=&quot;https://en.wikipedia.org/wiki/Personal_sound_amplification_product&quot;&gt;PSAPs&lt;/a&gt;)&lt;/li&gt;
+  &lt;li&gt;smart headphones, or &lt;a href=&quot;https://en.wikipedia.org/wiki/Hearables&quot;&gt;“hearables”&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;virtual, augmented, and mixed reality headsets&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Much of Ryan’s work, where the primarily application is traditional hearing aids, can be readily extended to these other AL technologies.&lt;/p&gt;
+
+&lt;h2 id=&quot;real-world-sound-de-mixing-and-re-mixing&quot;&gt;Real-World Sound De-mixing and Re-mixing&lt;/h2&gt;
+
+&lt;p&gt;In an ideal world, a hearing aid user could turn up the volume of a particular sound source (a person they are conversing with) and turn down the volume of background noise (mechanical noise, other people talking, loud music, etc.). A perfect AL system would work like a mixing board in a recording studio: each sound source would have its own slider, and the user — or an algorithm — would decide how much of each source should end up in the final mix.&lt;/p&gt;
+
+&lt;p&gt;&lt;img height=&quot;100&quot; align=&quot;right&quot; src=&quot;/assets/img/fader.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Developing such a system is not a trivial task, as you might imagine. The system would have to continuously do the following, in real-time:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Identify all sources of sound in a given environment&lt;/li&gt;
+  &lt;li&gt;Identify the types of sounds that are coming from each source&lt;/li&gt;
+  &lt;li&gt;Separate the sounds into their own channels&lt;/li&gt;
+  &lt;li&gt;Apply appropriate equalization and dynamic range compression settings to make the sounds more ‘listenable’&lt;/li&gt;
+  &lt;li&gt;Allow the user to adjust the gain of each source while preserving each sources’ spatial cues&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Source separation itself is a super difficult problem, but doing it in real-time for human listening (as opposed to machine listening) applications requires only a few milliseconds of delay between the microphone and the ear, making the problem orders of magnitude more difficult. Luckily, AL technologies are not constrained by having only two ears, the way humans are. We can use dozens or even hundreds of microphones (microphone arrays) to learn about a given auditory scene and process it accordingly.&lt;/p&gt;
+
+&lt;h2 id=&quot;microphone-arrays&quot;&gt;Microphone Arrays&lt;/h2&gt;
+
+&lt;p&gt;Though we may not think about it, we are constantly surrounded by microphones (see ‘A Word on Privacy’ section if this freaks you out as much as it did for me). Multiple microphones are built into our phones, laptops, smart speakers, hearing aids, smart headphones, audio conferencing equipment, and so much more. For example, the Amazon Echo has seven microphones and the Microsoft Kinect has four. These microphone arrays use subtle time-of-flight differences between signals at different sensors to determine what sounds are coming from what directions, track them as they move, and separate the signals spatially.&lt;/p&gt;
+
+&lt;p&gt;In our proposed system, we used similar techniques to perform source separation by exploiting the redundancies of all the microphones in a given room. The source separation system, which would run on a powerful computer or the cloud, decides what sources are in the room, where they are, and how sound propagates from the sources to each user’s listening device. Then, each listening device uses this information to design its own beamformer that uses only its own nearby microphones. Beamformers are like flashlights but instead of emitting light in the form of a beam, we are collecting acoustic information for a given three-dimensional space.&lt;/p&gt;
+
+&lt;h2 id=&quot;implementation&quot;&gt;Implementation&lt;/h2&gt;
+
+&lt;p&gt;&lt;img height=&quot;200&quot; align=&quot;right&quot; src=&quot;/assets/img/room.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;To test the proposed system, Ryan and I filled a medium-sized conference room with 160 lavelier microphones. There were four mannequins with 16 microphones mounted at various locations on their clothes (Ryan did some &lt;a href=&quot;https://publish.illinois.edu/augmentedlistening/acoustic-impulse-responses-for-wearable-audio-devices/&quot;&gt;other work&lt;/a&gt; on wearable microphone arrays) as well as 12 enclosures that simulated smart speakers distributed around the room that each had eight microphones. Ten loudspeakers were mounted roughly at head height to simulate a cocktail party scenario.&lt;/p&gt;
+
+&lt;p&gt;We recorded both impulse responses (to learn about the room acoustics) and speech samples played at each of the ten speakers, as well as a mixture of the speakers to simulate a cocktail party scenario. The work resulted in a &lt;a href=&quot;https://arxiv.org/pdf/1912.05038.pdf&quot;&gt;CAMSAP paper&lt;/a&gt;, poster (below) and publicly-available &lt;a href=&quot;https://databank.illinois.edu/datasets/IDB-6216881#&quot;&gt;dataset&lt;/a&gt;. Check out some of the results on &lt;a href=&quot;http://ryanmcorey.com/demos/cooperative/cooperative_demo.html&quot;&gt;our demos page.&lt;/a&gt;&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+  &lt;img height=&quot;900&quot; src=&quot;/assets/img/camsap.png&quot; /&gt;
+&lt;/p&gt;</content><author><name></name></author><category term="projects" /><summary type="html">Cooperative Listening Devices with Distributed and Wearable Microphone Arrays</summary></entry><entry><title type="html">Integer Programming for Optimal Right Hand Guitar Fingerings</title><link href="http://localhost:4000/20181217/fingerings" rel="alternate" type="text/html" title="Integer Programming for Optimal Right Hand Guitar Fingerings" /><published>2018-12-17T00:00:00-05:00</published><updated>2018-12-17T00:00:00-05:00</updated><id>http://localhost:4000/20181217/fingerings</id><content type="html" xml:base="http://localhost:4000/20181217/fingerings">&lt;h2 id=&quot;integer-programming-for-optimal-right-hand-guitar-fingerings&quot;&gt;Integer Programming for Optimal Right Hand Guitar Fingerings&lt;/h2&gt;
 
 &lt;p&gt;The Western canon of European classical music includes a substantial amount of scale-based, fingerstyle guitar music. When presented with a piece of sheet music, a classical guitarist must make a number of decisions regarding its performance. These decisions include notating the tablature, the left hand fingerings, and the right hand fingerings. This process, especially for right hand guitar fingerings, is often a trivial, yet cumbersome task.&lt;/p&gt;
 
@@ -118,7 +173,7 @@
 &lt;img src=&quot;/assets/img/measure2.png&quot; alt=&quot;drawing&quot; width=&quot;200&quot; style=&quot;float: center;&quot; /&gt; 
 &lt;img src=&quot;/assets/img/measure3.png&quot; alt=&quot;drawing&quot; width=&quot;160&quot; style=&quot;float: center;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Click &lt;a href=&quot;https://github.com/mskarha/rhfingerings&quot;&gt;here&lt;/a&gt; to access the Github repository of the Python code used to generate the .lp file in order to use our model on your own music.&lt;/p&gt;</content><author><name></name></author><category term="projects" /><summary type="html">Integer Programming for Optimal Right Hand Guitar Fingerings</summary></entry><entry><title type="html">Laser Interferometry for Loudspeaker Characterization</title><link href="http://localhost:4000/20171203/laser-interferometry" rel="alternate" type="text/html" title="Laser Interferometry for Loudspeaker Characterization" /><published>2017-12-03T00:00:00-06:00</published><updated>2017-12-03T00:00:00-06:00</updated><id>http://localhost:4000/20171203/laser-interferometry</id><content type="html" xml:base="http://localhost:4000/20171203/laser-interferometry">&lt;h2 id=&quot;laser-interferometry-for-loudspeaker-characterization&quot;&gt;Laser Interferometry for Loudspeaker Characterization&lt;/h2&gt;
+&lt;p&gt;Click &lt;a href=&quot;https://github.com/mskarha/rhfingerings&quot;&gt;here&lt;/a&gt; to access the Github repository of the Python code used to generate the .lp file in order to use our model on your own music.&lt;/p&gt;</content><author><name></name></author><category term="projects" /><summary type="html">Integer Programming for Optimal Right Hand Guitar Fingerings</summary></entry><entry><title type="html">Laser Interferometry for Loudspeaker Characterization</title><link href="http://localhost:4000/20171203/laser-interferometry" rel="alternate" type="text/html" title="Laser Interferometry for Loudspeaker Characterization" /><published>2017-12-03T00:00:00-05:00</published><updated>2017-12-03T00:00:00-05:00</updated><id>http://localhost:4000/20171203/laser-interferometry</id><content type="html" xml:base="http://localhost:4000/20171203/laser-interferometry">&lt;h2 id=&quot;laser-interferometry-for-loudspeaker-characterization&quot;&gt;Laser Interferometry for Loudspeaker Characterization&lt;/h2&gt;
 
 &lt;p&gt;In this experiment, I set up Michelson interferometer to measure the frequency response of a commercial loudspeaker to high precision.&lt;/p&gt;
 

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<link rel="stylesheet" href="/assets/css/atom-one-light.css">
+    
+        <title>Cooperative Listening Devices with Distributed and Wearable Microphone Arrays</title>
+		<link rel="stylesheet" type="text/css" href="/assets/css/002.css">
+    
+	<link rel="stylesheet" href="/assets/css/font-awesome.min.css">
+	<link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
+	<script src="/assets/js/highlight.pack.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+	<div class="wrapper">
+		<div class="default_title">
+			<img src="/assets/img/mycomputer.png" />
+			
+				<h1>Matt Skarha</h1>
+			
+		</div>
+		<ul class="topbar">
+	<a href="/me"><li><u>A</u>bout</li></a>
+	<a href="http://mathclassabsolution.com" target="_blank"><li><u>B</u>log</li></a>
+	<a href="/cv"><li><u>C</u>V</li></a>
+	<a href="http://twitter.com/skarhaha56" target="_blank"><li><u>T</u>witter</li></a>
+	<a href="http://github.com/mskarha" target="_blank"><li><u>G</u>ithub</li></a>
+</ul>
+		<div class="tag_list">
+			<ul id="tag-list">
+				<li><a href="/" ><img src="/assets/img/disk.png" />(C:)</a>
+			<ul>
+				
+				
+				<li><a href="/tag/projects/" title="projects"><img src="/assets/img/folder.ico" />projects</a></li>
+				
+			</ul>
+				</li>
+			</ul>
+		</div>
+		<div class="post_list">
+			
+				<ul>
+					
+					<li><a href="/20191210/eggDJ" title="eggDJ: A Portable Real-Time Music Augmentation System"><img src="/assets/img/file.ico" title="eggDJ: A Portable Real-Time Music Augmentation System" />eggDJ: A Portable Real-Time Music Augmentation System</a></li>
+					
+					<li><a href="/20190809/micarrays" title="Cooperative Listening Devices with Distributed and Wearable Microphone Arrays"><img src="/assets/img/file.ico" title="Cooperative Listening Devices with Distributed and Wearable Microphone Arrays" />Cooperative Listening Devices with Distributed and Wearable Microphone Arrays</a></li>
+					
+					<li><a href="/20181217/fingerings" title="Integer Programming for Optimal Right Hand Guitar Fingerings"><img src="/assets/img/file.ico" title="Integer Programming for Optimal Right Hand Guitar Fingerings" />Integer Programming for Optimal Right Hand Guitar Fingerings</a></li>
+					
+					<li><a href="/20171203/laser-interferometry" title="Laser Interferometry for Loudspeaker Characterization"><img src="/assets/img/file.ico" title="Laser Interferometry for Loudspeaker Characterization" />Laser Interferometry for Loudspeaker Characterization</a></li>
+					
+				</ul>
+			
+		</div>
+		<div class="post_total">
+			
+				<div class="left">4 object(s)</div>
+			
+			<div class="right">&nbsp;</div>
+		</div>
+	</div>
+	
+        <div class="content">
+			<div class="post_title">
+				<img src="/assets/img/file.png" />
+				<h1>Cooperative Listening Devices with Distributed and Wearable Microphone Arrays</h1>
+				<a href="/"><div class="btn"><span class="fa fa-times"></span></div></a>
+				<div class="btn btn_max"><span class="fa fa-window-maximize"></span></div>
+				<div class="btn"><span class="fa fa-window-minimize"></span></div>
+			</div>
+			<ul class="topbar">
+				<li>August 9, 2019</li>
+			</ul>
+			<div class="post_content">
+        		<h1 id="cooperative-listening-devices-with-distributed-and-wearable-microphone-arrays">Cooperative Listening Devices with Distributed and Wearable Microphone Arrays</h1>
+
+<p>I was fortunate enough to spend the past two summers (‘18 &amp; ‘19) as a research assistant in the lab of <a href="http://ryanmcorey.com/">Ryan Corey, PhD</a>. When I was working with him, he was a doctoral candidate in Electrical and Computer Engineering at the University of Illinois at Urbana-Champaign. This post summarizes our work.</p>
+
+<p align="center">
+  <img height="300" src="/assets/img/room1.jpg" />
+</p>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>Hearing aids don’t work well in noisy, reverberant environments where lots of people are talking at once (e.g. a crowded bar, conference poster session, etc.). Ryan, a hearing aid user himself, devoted his entire Ph.D. to improving the performance of hearing aids in noisy environments. In doing this, he also helped to develop what he calls ‘augmented listening (AL)’ technologies. You can read more about augmented listening technologies <a href="https://publish.illinois.edu/augmentedlistening/what-is-augmented-listening/">here</a>, but in general, they can be grouped into four categories of products:</p>
+
+<ul>
+  <li>traditional hearing aids</li>
+  <li>personal sound amplification products (<a href="https://en.wikipedia.org/wiki/Personal_sound_amplification_product">PSAPs</a>)</li>
+  <li>smart headphones, or <a href="https://en.wikipedia.org/wiki/Hearables">“hearables”</a></li>
+  <li>virtual, augmented, and mixed reality headsets</li>
+</ul>
+
+<p>Much of Ryan’s work, where the primarily application is traditional hearing aids, can be readily extended to these other AL technologies.</p>
+
+<h2 id="real-world-sound-de-mixing-and-re-mixing">Real-World Sound De-mixing and Re-mixing</h2>
+
+<p>In an ideal world, a hearing aid user could turn up the volume of a particular sound source (a person they are conversing with) and turn down the volume of background noise (mechanical noise, other people talking, loud music, etc.). A perfect AL system would work like a mixing board in a recording studio: each sound source would have its own slider, and the user — or an algorithm — would decide how much of each source should end up in the final mix.</p>
+
+<p><img height="100" align="right" src="/assets/img/fader.png" /></p>
+
+<p>Developing such a system is not a trivial task, as you might imagine. The system would have to continuously do the following, in real-time:</p>
+
+<ol>
+  <li>Identify all sources of sound in a given environment</li>
+  <li>Identify the types of sounds that are coming from each source</li>
+  <li>Separate the sounds into their own channels</li>
+  <li>Apply appropriate equalization and dynamic range compression settings to make the sounds more ‘listenable’</li>
+  <li>Allow the user to adjust the gain of each source while preserving each sources’ spatial cues</li>
+</ol>
+
+<p>Source separation itself is a super difficult problem, but doing it in real-time for human listening (as opposed to machine listening) applications requires only a few milliseconds of delay between the microphone and the ear, making the problem orders of magnitude more difficult. Luckily, AL technologies are not constrained by having only two ears, the way humans are. We can use dozens or even hundreds of microphones (microphone arrays) to learn about a given auditory scene and process it accordingly.</p>
+
+<h2 id="microphone-arrays">Microphone Arrays</h2>
+
+<p>Though we may not think about it, we are constantly surrounded by microphones (see ‘A Word on Privacy’ section if this freaks you out as much as it did for me). Multiple microphones are built into our phones, laptops, smart speakers, hearing aids, smart headphones, audio conferencing equipment, and so much more. For example, the Amazon Echo has seven microphones and the Microsoft Kinect has four. These microphone arrays use subtle time-of-flight differences between signals at different sensors to determine what sounds are coming from what directions, track them as they move, and separate the signals spatially.</p>
+
+<p>In our proposed system, we used similar techniques to perform source separation by exploiting the redundancies of all the microphones in a given room. The source separation system, which would run on a powerful computer or the cloud, decides what sources are in the room, where they are, and how sound propagates from the sources to each user’s listening device. Then, each listening device uses this information to design its own beamformer that uses only its own nearby microphones. Beamformers are like flashlights but instead of emitting light in the form of a beam, we are collecting acoustic information for a given three-dimensional space.</p>
+
+<h2 id="implementation">Implementation</h2>
+
+<p><img height="200" align="right" src="/assets/img/room.png" /></p>
+
+<p>To test the proposed system, Ryan and I filled a medium-sized conference room with 160 lavelier microphones. There were four mannequins with 16 microphones mounted at various locations on their clothes (Ryan did some <a href="https://publish.illinois.edu/augmentedlistening/acoustic-impulse-responses-for-wearable-audio-devices/">other work</a> on wearable microphone arrays) as well as 12 enclosures that simulated smart speakers distributed around the room that each had eight microphones. Ten loudspeakers were mounted roughly at head height to simulate a cocktail party scenario.</p>
+
+<p>We recorded both impulse responses (to learn about the room acoustics) and speech samples played at each of the ten speakers, as well as a mixture of the speakers to simulate a cocktail party scenario. The work resulted in a <a href="https://arxiv.org/pdf/1912.05038.pdf">CAMSAP paper</a>, poster (below) and publicly-available <a href="https://databank.illinois.edu/datasets/IDB-6216881#">dataset</a>. Check out some of the results on <a href="http://ryanmcorey.com/demos/cooperative/cooperative_demo.html">our demos page.</a></p>
+
+<p align="center">
+  <img height="900" src="/assets/img/camsap.png" />
+</p>
+
+				
+					<br>
+<hr>
+<br>
+<div class="donate">
+	
+</div>
+				
+			</div>
+		</div>
+    
+	<script src="/assets/js/001.js"></script>
+	<script src="/assets/js/002.js"></script>
+	<div class="footer">
+		<p></p>
+	</div>
+</body>
+</html>
