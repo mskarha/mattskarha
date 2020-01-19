@@ -59,6 +59,10 @@ To test the proposed system, Ryan and I filled a medium-sized conference room wi
 We recorded both impulse responses (to learn about the room acoustics) and speech samples played at each of the ten speakers, as well as a mixture of the speakers to simulate a cocktail party scenario. The work resulted in a [CAMSAP paper](https://arxiv.org/pdf/1912.05038.pdf), poster (below) and publicly-available [dataset](https://databank.illinois.edu/datasets/IDB-6216881#). Check out some of the results on [our demos page.](http://ryanmcorey.com/demos/cooperative/cooperative_demo.html)
 
 
+## A Word on Privacy
+
+Obviously, there are severe privacy concerns that have not been addressed in this work. For starters, a user would be able to listen to any sound source, even if it is on the other side of the room. Furthermore, a hacker would be able to hijack the contents of any conversation in a room for whatever purpose. Luckily, a great deal of research has been done into privacy-preserving inference algorithms (see Peter Kairouz's [Ph.D. thesis](https://www.ideals.illinois.edu/bitstream/handle/2142/92686/KAIROUZ-DISSERTATION-2016.pdf?sequence=1&isAllowed=y)) where the algorithm could perform acoustic channel estimation without having direct access to the signal's content. That is, there are ways of encrypting signals in a context such as an audio remixing system that would allow them to protect user privacy. Nonetheless, more research needs to be done into the appropriateness for such a system in a given context and its impact on user privacy before being implemented in a real-world setting. 
+
 <p align="center">
   <img height="900" src="/assets/img/camsap.png">
 </p>
