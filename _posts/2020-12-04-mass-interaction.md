@@ -420,3 +420,7 @@ at the Proceedings of the international conference on New Interfaces for
 Musical Expression, Baton Rouge, Louisiana, USA.
 
 [9] Jerome Villeneuve, James Leonard. Mass-Interaction Physical Models for Sound ans Multi-Sensory Creation : Starting Anew. SMC 2019 - 16th Sound & Music Computing Conference, May 2019, Malaga, Spain. 
+
+# GitHub
+
+Max patch built for this project can be found on GitHub at [https://github.com/mskarha/massinteractioncontrol](https://github.com/mskarha/massinteractioncontrol).
