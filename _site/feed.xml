@@ -1,4 +1,411 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-04-04T11:05:32-04:00</updated><id>http://localhost:4000/</id><title type="html">Matt Skarha</title><subtitle>Your description here</subtitle><entry><title type="html">eggDJ: A Portable Real-Time Music Augmentation System</title><link href="http://localhost:4000/20191210/lorem-ipsum" rel="alternate" type="text/html" title="eggDJ: A Portable Real-Time Music Augmentation System" /><published>2019-12-10T00:00:00-05:00</published><updated>2019-12-10T00:00:00-05:00</updated><id>http://localhost:4000/20191210/lorem-ipsum</id><content type="html" xml:base="http://localhost:4000/20191210/lorem-ipsum">&lt;h1 id=&quot;eggdj-a-portable-real-time-music-augmentation-system&quot;&gt;eggDJ: A Portable Real-Time Music Augmentation System&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-12-10T17:54:14-05:00</updated><id>http://localhost:4000/</id><title type="html">Matt Skarha</title><subtitle>Your description here</subtitle><entry><title type="html">Spectral Descriptors as Control Objects for Mass-Interaction Physical Modeling</title><link href="http://localhost:4000/20201204/mass-interaction" rel="alternate" type="text/html" title="Spectral Descriptors as Control Objects for Mass-Interaction Physical Modeling" /><published>2020-12-04T00:00:00-05:00</published><updated>2020-12-04T00:00:00-05:00</updated><id>http://localhost:4000/20201204/mass-interaction</id><content type="html" xml:base="http://localhost:4000/20201204/mass-interaction">&lt;h1 id=&quot;spectral-descriptors-as-control-objects-for-mass-interaction-physical-modeling-sound-synthesis&quot;&gt;Spectral Descriptors as Control Objects for Mass-Interaction Physical Modeling Sound Synthesis&lt;/h1&gt;
+&lt;p align=&quot;center&quot;&gt;
+  &lt;img height=&quot;200&quot; src=&quot;/assets/img/beam.png&quot; /&gt;&lt;br /&gt;
+  &lt;em&gt;Figure 1. Physical model of a beam with 86 masses and 512 interactions, &lt;br /&gt;excited by a plucking mechanism. Taken from [9].&lt;/em&gt;
+&lt;/p&gt;
+
+&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
+
+&lt;p&gt;Walking down the street with my headphones on, I observe that I am
+listening to both continuous-time signals (my footsteps, the cars
+passing by) and digitally-processed discrete-time signals (lofi house
+mix on SoundCloud through my headphones). However, my brain more-or-less
+perceives them as both continuous-time, in a way blurring the lines
+between the analog and digital worlds. At the center of this blurring
+is, of course, signal processing. Wielding this idea has numerous
+applications, particularly for digital sound synthesis for music
+creation. If we can understand how to model mechanical and acoustical
+systems that are governed by physical laws using discrete-time and
+discrete-space mathematical formalisms, we can simulate these systems
+with a control that might not be feasible in the analog realm. This is
+then the task of physical modeling sound synthesis.&lt;/p&gt;
+
+&lt;h1 id=&quot;physical-modeling-for-sound-synthesis&quot;&gt;Physical Modeling for Sound Synthesis&lt;/h1&gt;
+
+&lt;p&gt;Within the realm of computer music, a number of formalisms for physical
+modeling have been proposed over the past forty years. A few are:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;finite difference schemes&lt;/li&gt;
+  &lt;li&gt;lumped models&lt;/li&gt;
+  &lt;li&gt;digital waveguides&lt;/li&gt;
+  &lt;li&gt;modal synthesis&lt;/li&gt;
+  &lt;li&gt;finite element modeling&lt;/li&gt;
+  &lt;li&gt;state-space techniques&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Certainly each of these formalisms have their own pros and cons and will
+be suitable or unsuitable depending on the system. Often combinations of
+techniques can be used to achieve a more precise model. In 2003,
+Castagne and Cadoz proposed 10 general criteria for evaluating physical
+modeling techniques oriented to music creation [1]:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;How efficient is the algorithm?&lt;/li&gt;
+  &lt;li&gt;How faithful are the synthesized sounds?&lt;/li&gt;
+  &lt;li&gt;How diverse are the categories of instruments that can be modelled?&lt;/li&gt;
+  &lt;li&gt;Is the scheme exclusively dedicated to sound synthesis or more
+general?&lt;/li&gt;
+  &lt;li&gt;How robust is sound plausability?&lt;/li&gt;
+  &lt;li&gt;How modular is the technique?&lt;/li&gt;
+  &lt;li&gt;How intuitive and effective is the associated mental model?&lt;/li&gt;
+  &lt;li&gt;How deep is the modeling process enabled by the scheme?&lt;/li&gt;
+  &lt;li&gt;Do generation algorithms exist?&lt;/li&gt;
+  &lt;li&gt;Is there a friendly musician-oriented environment for using the
+scheme?&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;While it is not the task of this project to compare and contrast
+modeling schemes, I think these are good criteria to keep in mind when
+considering this project.&lt;/p&gt;
+
+&lt;h1 id=&quot;mass-interaction-physical-modeling&quot;&gt;Mass-Interaction Physical Modeling&lt;/h1&gt;
+
+&lt;h2 id=&quot;background&quot;&gt;Background&lt;/h2&gt;
+
+&lt;p&gt;Mass-Interaction Physical Modeling is one of the oldest techniques for
+digital sound synthesis via physical modeling. It was pioneered
+beginning in 1978 by the CORDIS-ANIMA system developed at ACROE in
+Grenoble, France [2]. The basic idea is to represent physical systems
+in the form of lumped networks composed of two main components: mass
+objects and interaction objects. Mass objects represent material points
+in a given space with some inertial behavior while interaction objects
+represent a specific type of coupling between mass objects (i.e.
+visco-elastic, collision, non-linear). By doing this, we avoid the need
+to explicitly define a mathematical model such as a partial differential
+equation system with boundary conditions (as is needed in finite
+difference methods).&lt;/p&gt;
+
+&lt;p&gt;Within the past few years, there has been somewhat of a renewed interest
+in mass-interaction physical modeling, driven by the release of a
+Max/MSP package mi-gen~ [3]
+(&lt;a href=&quot;#https://github.com/mi-creative/mi-gen&quot;&gt;github&lt;/a&gt;) and a Faust [4]
+(&lt;a href=&quot;#https://github.com/rmichon/mi_faust&quot;&gt;github&lt;/a&gt;) library. These tools
+have certainly improved the accessibility of MI-modeling thanks to the
+inclusion of a model scriptor that translates a high level model into
+lower level code.&lt;/p&gt;
+
+&lt;h2 id=&quot;basics&quot;&gt;Basics&lt;/h2&gt;
+
+&lt;p&gt;In order to model the physics of masses and interactions in
+discrete-time, we will apply a second order central difference scheme to
+Newton’s second law. For a point mass, we have&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;f = ma = m\frac{d^2x}{dt^2}&lt;/script&gt;
+
+&lt;p&gt;where &lt;script type=&quot;math/tex&quot;&gt;f&lt;/script&gt; is the force applied to the mass, &lt;script type=&quot;math/tex&quot;&gt;m&lt;/script&gt; is its inertia, &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; is
+its acceleration, and &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; is its position.&lt;/p&gt;
+
+&lt;p&gt;Using a second order central difference scheme with sampling period
+&lt;script type=&quot;math/tex&quot;&gt;\Delta T&lt;/script&gt;, we have&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;f(t) = m\frac{x(t+\Delta T) - 2x(t) + x(t-\Delta T)}{\Delta T^2}.&lt;/script&gt;
+
+&lt;p&gt;To discretize, we simply convert the sample period into a sample and
+collect the continuous-time parameters into a discrete-time inertial
+constant &lt;script type=&quot;math/tex&quot;&gt;M = \frac{m}{\Delta T^2}.&lt;/script&gt;&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;f[n] = M(x[n+1] - 2x[n] + x[n-1]).&lt;/script&gt;
+
+&lt;p&gt;Rearranging terms, we can achieve a difference equation that describes
+the discrete-time position of a mass as a result of the external forces
+being applied:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;x[n+1] = 2x[n] - x[n-1] + \frac{f[n]}{M}.&lt;/script&gt;
+
+&lt;p&gt;A very common object in mass-interaction modeling is a visco-elastic
+spring connecting two masses. Consider a spring with stiffness parameter
+&lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; and damping parameter &lt;script type=&quot;math/tex&quot;&gt;z&lt;/script&gt;. Hooke’s Law tells us that the force
+needed to extend or compress a spring by some distance &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; scales
+linearly with respect to that distance. In the case of a spring
+connecting masses as shown in Figure 1, we have&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+  &lt;img height=&quot;100&quot; src=&quot;\assets\img\spring.png&quot; /&gt;&lt;br /&gt;
+  &lt;em&gt;Figure 1. A visco-elastic spring connecting two masses, m_1 and m_2 at
+positions x_1 and x_2, respectively.&lt;/em&gt;
+&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;f_{s,1\rightarrow 2} = -k(x_2 - x_1)&lt;/script&gt;
+
+&lt;p&gt;where &lt;script type=&quot;math/tex&quot;&gt;x_1&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;x_2&lt;/script&gt; are the positions of the two masses &lt;script type=&quot;math/tex&quot;&gt;m_1&lt;/script&gt; and
+&lt;script type=&quot;math/tex&quot;&gt;m_2&lt;/script&gt;, respectively. In discrete-time, this is&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;f_{s,1\rightarrow 2}[n] = -K(x_2[n] - x_1[n])&lt;/script&gt;
+
+&lt;p&gt;where &lt;script type=&quot;math/tex&quot;&gt;K = k&lt;/script&gt; is the discrete-time stiffness parameter.&lt;/p&gt;
+
+&lt;p&gt;If we approximate damping to the first-order, we have the following
+relationship describing the force from &lt;script type=&quot;math/tex&quot;&gt;m_1&lt;/script&gt; onto &lt;script type=&quot;math/tex&quot;&gt;m_2&lt;/script&gt; as a result of
+the damper:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;f_{d,1\rightarrow 2} = -z\frac{d(x_2 - x_1)}{dt}.&lt;/script&gt;
+
+&lt;p&gt;Using a first-order backward difference scheme to discretize the
+derivative, we have&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;f_{d,1\rightarrow 2} = -z\frac{(x_2(t) - x_1(t)) - (x_2(t-\Delta T) - x_1(t-\Delta T))}{\Delta T},&lt;/script&gt;
+
+&lt;p&gt;where &lt;script type=&quot;math/tex&quot;&gt;\Delta T&lt;/script&gt; is the sampling period. In discrete-time, we have&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;f_{d,1\rightarrow 2}[n] = -Z[(x_2[n] - x_2[n-1]) - (x_1[n] - x_1[n-1])].&lt;/script&gt;
+
+&lt;p&gt;Thus, we have computed the discrete-time external forces for a spring
+connecting two masses. More common, however, is the world-reknown linear
+harmonic damped oscillator (mass on a spring) where one end of the
+spring is now fixed to a point, as shown in Figure 2. Writing the sum of
+the forces on mass &lt;script type=&quot;math/tex&quot;&gt;m&lt;/script&gt; as a result of the spring and the damper, we have&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;f_{tot, m}[n] = f_{s,m}[n] + f_{d,m}[n]&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;f_{tot, m}[n] = -Kx[n] - Zx[n] + Zx[n-1].&lt;/script&gt;
+
+&lt;p&gt;We can now substitute this expression into the discrete-time Newton’s
+second law from above and rearrange terms to achieve a difference
+equation that describes the motion of a harmonic oscillator.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+  &lt;img height=&quot;100&quot; src=&quot;\assets\img\springmass.png&quot; /&gt;&lt;br /&gt;
+  &lt;em&gt;Figure 2. A visco-elastic spring connecting a mass and a fixed point.&lt;/em&gt;
+&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;x[n+1] = \left( 2 - \frac{K+Z}{M}\right)x[n] + \left(\frac{Z}{M} -1 \right ) x[n-1]&lt;/script&gt;
+
+&lt;p&gt;Notice that the position of the mass at time &lt;script type=&quot;math/tex&quot;&gt;n+1&lt;/script&gt; simply depends on a
+linear combination of the position of the mass at time &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;n-1&lt;/script&gt;,
+where the coefficients are simply terms in the stiffness parameter &lt;script type=&quot;math/tex&quot;&gt;K&lt;/script&gt;,
+the damping parameter &lt;script type=&quot;math/tex&quot;&gt;Z,&lt;/script&gt; and the inertial parameter &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt;. In practice,
+these parameters are normalized to 1. Although they are functions of the
+sample rate, they do provide a direct view of stability conditions for
+the system. In order to stay in an oscillatory regime, we must have
+&lt;script type=&quot;math/tex&quot;&gt;4M &gt; K + 2Z&lt;/script&gt;. A derivation of stability conditions for the linear
+harmonic oscillator can be found in the appendix of [3].&lt;/p&gt;
+
+&lt;h2 id=&quot;building-topologies&quot;&gt;Building Topologies&lt;/h2&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+  &lt;img height=&quot;250&quot; src=&quot;\assets\img\triangle.png&quot; /&gt;&lt;br /&gt;
+  &lt;em&gt;Figure 3. Physical model of a triangle. Taken from
+[4].&lt;/em&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Based on this formalism, modeling with MI involves building a
+geometrical model by positioning and connecting masses together through
+interaction objects, and by specifying the parameters and initial
+conditions for each one. Figure 3 shows a basic physical model of a
+triangle (the percussion instrument). Three masses are joined by
+dampened springs with one of the masses fixed to a point. The system is
+then excited by a pluck at the input module and the output is taken from
+one of the masses. Because sound is essentially just air being pushed,
+we can listen to the motion of a given mass as the output of our system.&lt;/p&gt;
+
+&lt;p&gt;One main advantage arises when comparing MI modeling with other physical
+modeling paradigms: It introduces the ability to build and excite
+virtual mechanical constructions that are not bounded by realism. We
+know from more traditional musical acoustics research that many
+nonlinear behaviors exist in acoustic musical instruments which
+contribute to their unique and interesting timbres. It is often the task
+of other physical modeling techniques to model these nonlinearities for
+a given system with the goal of achieving a more realistic sound
+synthesis. With MI modeling, we are &quot;atomically&quot; building structures
+grounded in Newton’s second law, meaning nonlinear behavior will arise
+naturally if a system is excited properly and maintains numerical
+stability. If we can model and excite the right structure, theoretically
+we can discover new interesting behaviors and sounds for use in an
+artistic process.&lt;/p&gt;
+
+&lt;p&gt;One main disadvantage, however, is the task at hand. It is difficult to
+develop an intuition of how to model structures to achieve a certain
+timbre or behavior, especially when there are three parameters to adjust
+for every object. The goal of this project, then, is to simplify this
+process by introducing higher level (timbral) control objects to build
+MI geometries.&lt;/p&gt;
+
+&lt;h1 id=&quot;towards-higher-level-control-of-mi-systems&quot;&gt;Towards Higher Level Control of MI Systems&lt;/h1&gt;
+
+&lt;p&gt;This project attempts to introduce higher level control objects for
+mass-interaction physical models. This was done by first assessing what
+a set optimal control parameters would look like in this context. Next,
+a series of experiments were conducted to build models for the
+relationships between existing parameters and optimal parameters. And
+finally, a Max patch was developed with these controls as input to
+determine if it is a more intuitive approach to MI modeling.&lt;/p&gt;
+
+&lt;h2 id=&quot;optimal-control-parameters&quot;&gt;Optimal Control Parameters&lt;/h2&gt;
+
+&lt;p&gt;If an artist wants to use mass-interaction modeling as a sound synthesis
+paradigm in their creative process, what parameters would they be
+interested in controlling? Considering the victories of previous
+synthesizers, I contend pitch and decay rate would be suitable as a
+start.&lt;/p&gt;
+
+&lt;p&gt;As for timbral control, we can use spectral descriptors to build a
+control object. Spectral descriptors are a set of perceptually-relevant
+algorithms that can be computed on any audio signal to learn information
+about that signal. Some examples are spectral centroid, decrease,
+kurtosis, and spread. Sound events are analyzed in terms of various
+input representations including the short-term Fourier transform,
+harmonic sinusoidal components, and an auditory model based on the
+equivalent rectangular bandwidth concept. A number of audio descriptors
+are then derived from each of these representations to capture temporal,
+spectral, spectrotemporal, and energetic properties of the sound events
+[5].&lt;/p&gt;
+
+&lt;p&gt;There are often correlations between spectral descriptors and perceptual
+attributes. For example, spectral centroid is known to be correlated
+with brightness. I contend that we can exploit this idea to obtain
+higher level control over mass-interaction physical models.&lt;/p&gt;
+
+&lt;h2 id=&quot;experiments&quot;&gt;Experiments&lt;/h2&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+  &lt;img height=&quot;250&quot; src=&quot;\assets\img\fundfit.png&quot; /&gt;&lt;br /&gt;
+  &lt;em&gt;Figure 4.Inertial parameter M vs. fundamental frequency. A least-squares fit
+indicates a first-order power law
+relationship.&lt;/em&gt;
+&lt;/p&gt;
+
+&lt;p&gt;To determine the relationship between the inertial parameter and the
+pitch, an experiment was carried out by varying the inertial parameter
+&lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt; and estimating the fundamental frequency, as shown in Figure 4. A 50
+mass string was used as the test structure. The data was fit to a
+first-order power law of the form &lt;script type=&quot;math/tex&quot;&gt;f(x) = ax^b&lt;/script&gt; and a 0.9995 R-square
+value was achieved. Thus, to control the inertial parameter with pitch,
+an inverse function &lt;script type=&quot;math/tex&quot;&gt;f^{-1}(x)&lt;/script&gt; is taken and solved for &lt;script type=&quot;math/tex&quot;&gt;f(x)&lt;/script&gt;:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;M = af_0^b&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;f_0 = \sqrt[b]{M/a},&lt;/script&gt;
+
+&lt;p&gt;where &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt; is the discrete-time inertial parameter, &lt;script type=&quot;math/tex&quot;&gt;f_0&lt;/script&gt; is the
+fundamental frequency in Hz, &lt;script type=&quot;math/tex&quot;&gt;a = 113.4&lt;/script&gt;, and &lt;script type=&quot;math/tex&quot;&gt;b = -0.4982&lt;/script&gt;. It is
+important to note that while the first order power law relationship
+holds across different structures, the coefficients of the model do not
+and can therefore not be generalizable. This drastically increases the
+difficulty for pitch control via inertial parameter modulation and it
+would likely be easier to use known pitch shifting techniques.&lt;/p&gt;
+
+&lt;p&gt;Next, an experiment was carried out to determine the relationship
+between the inertial parameter and the decay time, as shown in Figure 5.
+This indicated a linear relationship between the two variables and a
+control object was constructed accordingly. Again, while the fit
+coefficients are not generalizable for any given structure, the linear
+relationship holds.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+  &lt;img height=&quot;250&quot; src=&quot;\assets\img\decayfit.png&quot; /&gt;&lt;br /&gt;
+  &lt;em&gt;Figure 5. Inertial parameter M vs. decay time (ms). A least-squares fit
+indicates a linear relationship.&lt;/em&gt;
+&lt;/p&gt;
+
+&lt;p&gt;To determine what a timbral control object would look like, a number of
+experiments were carried out using spectral descriptors to try to
+determine the relationship between MI geometry and timbre. First,
+several spectral descriptors were measured against the number of masses
+in an ideal string to determine the timbral effect of masses. Some of
+the results are shown in Figure 6. Adding masses to a string therefore
+decreases centroid, increases spectral decrease, increases kurtosis, and
+decreases slope.&lt;/p&gt;
+
+&lt;p&gt;Then, six mid-level macro objects were constructed using the Mass
+Interaction Model Scripter (MIMS) provided in the mi-gen  Max/MSP
+toolbox: string (ideal string fixed at both ends), stiff string (a
+string accounting for 2nd order stiffness, fixed at both ends), a chain
+(string but not fixed at end), mesh (2d string with open boundary
+conditions), closedMesh (entirely fixed boundary conditions), and
+cornerMesh (fixed points at each of the four corners). Then, the
+parameters were tuned so that all objects had the same fundamental
+frequency and damping (it doesn’t make sense to compare timbres of
+objects of different pitches/decays). The objects were measured against
+spectral descriptors (centroid, decrease, kurtosis, spread, skewness,
+rolloff) to try to determine their effect on the timbre. Some of the
+results are shown in Figure 7. The main takeaway from these experiments
+was that not fixing points has the effect of boosting low frequencies
+(as in the case of the chain).&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+  &lt;img height=&quot;450&quot; src=&quot;\assets\img\sda.png&quot; /&gt;&lt;br /&gt;
+  &lt;em&gt;Figure 6. Some results of experiment testing timbral effects of number of masses
+on an ideal string.&lt;/em&gt;
+&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+  &lt;img height=&quot;250&quot; src=&quot;\assets\img\centroidec.png&quot; /&gt;&lt;br /&gt;
+  &lt;em&gt;Figure 7. Some results of experiment testing timbral effects of various
+mid-level structures.&lt;/em&gt;
+&lt;/p&gt;
+
+&lt;h2 id=&quot;max-patch&quot;&gt;Max Patch&lt;/h2&gt;
+
+&lt;p&gt;A Max patch was constructed with a novel &quot;timbral control&quot; object
+based on the results of the experiments in the previous section. The
+object is based off of Max’s &lt;em&gt;pattrstorage&lt;/em&gt; object while allows for
+linear interpolation between presets. Six timbral &quot;modes&quot; are
+contained as presets in this object, between which the user can
+interpolate. The modes were determined by varying the gain of each of
+the six macro objects described earlier while holding the other five
+constant and determining their effect on six spectral descriptors
+(centroid, kurtosis, decrease, skewness, rolloff). If a spectral
+descriptor quantity reached a maximum as the gains were varied, it was
+determined to be a timbral &quot;mode&quot; and was added to the object.&lt;/p&gt;
+
+&lt;h1 id=&quot;conclusions&quot;&gt;Conclusions&lt;/h1&gt;
+
+&lt;p&gt;Mass-Interaction Physical Modeling is a physical modeling sound
+synthesis technique performed by representing physical systems in the
+form of lumped networks composed of two main components: mass objects
+and interaction objects. Modeling with MI involves building a
+geometrical model by positioning and connecting masses together through
+interaction objects, and by specifying the parameters and initial
+conditions for each one. However, it is difficult to achieve intuition
+over how to build physical models since the objects are so low-level.
+This project sought to create higher level timbral control objects by
+experimenting with spectral descriptors across various topologies.&lt;/p&gt;
+
+&lt;p&gt;While I have made some progress towards higher level control of MI
+models, there is still far more to be done. The task ended up being far
+more difficult than I expected and would require a much deeper
+understanding in order to implement such an object in a synthesizer.
+Nonetheless, I believe MI modeling has endless potential as a physical
+modeling technique and I look forward to continue studying it in the
+future.&lt;/p&gt;
+
+&lt;h1 id=&quot;references&quot;&gt;References&lt;/h1&gt;
+
+&lt;p&gt;[1] N. Castagne, C. Cadoz, “10 Criteria for evaluating physical modelling
+schemes for music creation”, Proceeding of the Digital Audio Effects
+Conference DAFX03,London, UK, 2003&lt;/p&gt;
+
+&lt;p&gt;[2] Cadoz, C., Luciani, A., &amp;amp; Florens, J. L. (1993). CORDIS-ANIMA: A
+Modeling and Simulation System for Sound and Image Synthesis: The
+General Formalism. Computer Music Journal, 17(1), 19-29.
+doi:10.2307/3680567&lt;/p&gt;
+
+&lt;p&gt;[3] Castagné, N., &amp;amp; Cadoz, C. (2002). GENESIS : a Friendly Musician-Oriented
+Environment for Mass-Interaction Physical Modeling. International
+Computer Music Conference Proceedings.&lt;/p&gt;
+
+&lt;p&gt;[4] Leonard, J., &amp;amp; Villeneuve, J. (2019, 2019-05-28). mi-gen : An Efficient
+and Accessible Mass-Interaction Sound Synthesis Toolbox. Paper presented
+at the SMC 2019 - 16th Sound &amp;amp; Music Computing Conference, Malaga,
+Spain.&lt;/p&gt;
+
+&lt;p&gt;[5] Leonard, J., Villeneuve, J., Michon, R., &amp;amp; Orlarey, Y. (2019).
+Formalizing Mass-Interaction Physical Modeling in Faust.&lt;/p&gt;
+
+&lt;p&gt;[6] Peeters G, Giordano BL, Susini P, Misdariis N, McAdams S. The Timbre
+Toolbox: extracting audio descriptors from musical signals. J Acoust Soc
+Am. 2011 Nov;130(5):2902-16. doi: 10.1121/1.3642604. PMID: 22087919.&lt;/p&gt;
+
+&lt;p&gt;[7] Kontogeorgakopoulos, A., &amp;amp; Claude, C. (2007). Cordis Anima Physical
+Modeling and Simulation System Analysis.&lt;/p&gt;
+
+&lt;p&gt;[8] Leonard, J., &amp;amp; Cadoz, C. (2015). Physical Modelling Concepts for a
+Collection of Multisensory Virtual Musical Instruments. Paper presented
+at the Proceedings of the international conference on New Interfaces for
+Musical Expression, Baton Rouge, Louisiana, USA.&lt;/p&gt;
+
+&lt;p&gt;[9] Jerome Villeneuve, James Leonard. Mass-Interaction Physical Models for Sound ans Multi-Sensory Creation : Starting Anew. SMC 2019 - 16th Sound &amp;amp; Music Computing Conference, May 2019, Malaga, Spain.&lt;/p&gt;</content><author><name></name></author><category term="projects" /><summary type="html">Spectral Descriptors as Control Objects for Mass-Interaction Physical Modeling Sound Synthesis Figure 1. Physical model of a beam with 86 masses and 512 interactions, excited by a plucking mechanism. Taken from [9].</summary></entry><entry><title type="html">eggDJ: A Portable Real-Time Music Augmentation System</title><link href="http://localhost:4000/20191210/lorem-ipsum" rel="alternate" type="text/html" title="eggDJ: A Portable Real-Time Music Augmentation System" /><published>2019-12-10T00:00:00-05:00</published><updated>2019-12-10T00:00:00-05:00</updated><id>http://localhost:4000/20191210/lorem-ipsum</id><content type="html" xml:base="http://localhost:4000/20191210/lorem-ipsum">&lt;h1 id=&quot;eggdj-a-portable-real-time-music-augmentation-system&quot;&gt;eggDJ: A Portable Real-Time Music Augmentation System&lt;/h1&gt;
 &lt;p align=&quot;center&quot;&gt;
   &lt;img height=&quot;200&quot; src=&quot;/assets/img/eggDJ.jpg&quot; /&gt;
 &lt;/p&gt;
@@ -65,7 +472,7 @@
 
 &lt;p&gt;[1] Frid, Emma. “Accessible Digital Musical Instruments - a Survey of Inclusive Instruments Presented at the NIME, SMC and ICMC Conferences.” ICMC (2018).&lt;/p&gt;</content><author><name></name></author><category term="projects" /><summary type="html">eggDJ: A Portable Real-Time Music Augmentation System</summary></entry><entry><title type="html">Cooperative Listening Devices with Distributed and Wearable Microphone Arrays</title><link href="http://localhost:4000/20190809/micarrays" rel="alternate" type="text/html" title="Cooperative Listening Devices with Distributed and Wearable Microphone Arrays" /><published>2019-08-09T00:00:00-04:00</published><updated>2019-08-09T00:00:00-04:00</updated><id>http://localhost:4000/20190809/micarrays</id><content type="html" xml:base="http://localhost:4000/20190809/micarrays">&lt;h1 id=&quot;cooperative-listening-devices-with-distributed-and-wearable-microphone-arrays&quot;&gt;Cooperative Listening Devices with Distributed and Wearable Microphone Arrays&lt;/h1&gt;
 
-&lt;p&gt;I was fortunate enough to spend the past two summers (‘18 &amp;amp; ‘19) as a research assistant in the lab of &lt;a href=&quot;http://ryanmcorey.com/&quot;&gt;Ryan Corey, PhD&lt;/a&gt;. When I was working with him, he was a doctoral candidate in Electrical and Computer Engineering at the University of Illinois at Urbana-Champaign. This post summarizes our work.&lt;/p&gt;
+&lt;p&gt;I was fortunate enough to spend two summers (‘18 &amp;amp; ‘19) as a research assistant in the lab of &lt;a href=&quot;http://ryanmcorey.com/&quot;&gt;Ryan Corey, PhD&lt;/a&gt;. When I was working with him, he was a doctoral candidate in Electrical and Computer Engineering at the University of Illinois at Urbana-Champaign. This post summarizes our work.&lt;/p&gt;
 
 &lt;p align=&quot;center&quot;&gt;
   &lt;img height=&quot;300&quot; src=&quot;/assets/img/room1.jpg&quot; /&gt;

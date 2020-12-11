@@ -7,7 +7,7 @@ tags: projects
 # Cooperative Listening Devices with Distributed and Wearable Microphone Arrays
 
 
-I was fortunate enough to spend the past two summers ('18 & '19) as a research assistant in the lab of [Ryan Corey, PhD](http://ryanmcorey.com/). When I was working with him, he was a doctoral candidate in Electrical and Computer Engineering at the University of Illinois at Urbana-Champaign. This post summarizes our work. 
+I was fortunate enough to spend two summers ('18 & '19) as a research assistant in the lab of [Ryan Corey, PhD](http://ryanmcorey.com/). When I was working with him, he was a doctoral candidate in Electrical and Computer Engineering at the University of Illinois at Urbana-Champaign. This post summarizes our work. 
 
 <p align="center">
   <img height="300" src="/assets/img/room1.jpg">
